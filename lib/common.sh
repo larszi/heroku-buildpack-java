@@ -87,8 +87,9 @@ cache_copy() {
 install_jdk() {
 	local install_dir=${1}
 	local cache_dir=${2}
+ 	echo "CUSTOM TEST"
 
-	JVM_COMMON_BUILDPACK=${JVM_COMMON_BUILDPACK:-https://buildpack-registry.s3.us-east-1.amazonaws.com/buildpacks/heroku/jvm.tgz}
+	JVM_COMMON_BUILDPACK="https://github.com/heroku/heroku-buildpack-jvm-common/archive/refs/tags/v159.tar.gz"
 	mkdir -p /tmp/jvm-common
 	curl --fail --retry 3 --retry-connrefused --connect-timeout 5 --silent --location "${JVM_COMMON_BUILDPACK}" | tar xzm -C /tmp/jvm-common --strip-components=1
 	#shellcheck source=/dev/null
